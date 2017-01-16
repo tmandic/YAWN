@@ -11,7 +11,7 @@ Push buttons: 4 general purpose push buttons and RESET button
 Timer: for long interval and minmum sleep current consumption
 Jumpers: J1-J4 push buttons select jumpers, J5-J6 power supply configuration, J7-J8 DONE pin (timer is used) selector, J11 - VCAP monitor, all other jumpers are header pin selectors
 
-# (c) University of Zagreb Faculty of Electrical Engineering and Computing
-#   _Authors : T. Mandic, N. Budimir, A. Baric
-#   _Version : 3
-#   _Date : 2016/01/16
+(c) University of Zagreb Faculty of Electrical Engineering and Computing
+_Authors : T. Mandic, N. Budimir, A. Baric
+_Version : 3
+_Date : 2016/01/16
