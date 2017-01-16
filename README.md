@@ -12,11 +12,11 @@ power supply: 1.5 F supercapacitor or CR2032 battery. The supercapacictor can be
 
 LED: two green and red signalling LED 
 
-Push buttons: 4 general purpose push buttons and RESET button
+push buttons: 4 general purpose push buttons and RESET button
 
-Timer: for long interval and minmum sleep current consumption
+timer: for long interval and minmum sleep current consumption
 
-Jumpers: J1-J4 push buttons select jumpers, J5-J6 power supply configuration, J7-J8 DONE pin (timer is used) selector, J11 - VCAP monitor, all other jumpers are header pin selectors
+jumpers: J1-J4 push buttons select jumpers, J5-J6 power supply configuration, J7-J8 DONE pin (timer is used) selector, J11 - VCAP monitor, all other jumpers are header pin selectors
 
 (c) University of Zagreb Faculty of Electrical Engineering and Computing
 
