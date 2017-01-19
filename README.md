@@ -22,6 +22,6 @@ jumpers: J1-J4 push buttons select jumpers, J5-J6 power supply configuration, J7
 
 _Authors : T. Mandic, N. Budimir, A. Baric
 
-_Version : 3
+_Version : 4
 
-_Date : 2016/01/16
+_Date : 2016/01/19
