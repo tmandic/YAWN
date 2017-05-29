@@ -55,6 +55,41 @@ void main(void)
     MUSHROOM_ON = 0;
     SW = 0;    
     IRQ = 1;
+    
+    
+    INTCONbits.IOCIE = 0;       // Disable IOC Interrupts 
+    IOCBFbits.IOCBF5 = 0;       // clear flags
+    INTCONbits.IOCIF = 0;   
+
+    // indicate 
+    REDLED = 1; // turn ON red LED   
+    __delay_ms(40);
+    REDLED = 0; // turn OFF red LED  
+    __delay_ms(40);
+    REDLED = 1; // turn ON red LED   
+    __delay_ms(40);
+    REDLED = 0; // turn OFF red LED                  
+    // send message
+    CE = 0;
+    SPI_init();
+    nRF_Setup(); 
+    FlushTXRX();
+    WriteRegister(NRF_STATUS,0x70);         // Reset status register
+    __delay_ms(2);
+    CE = 1;
+    __delay_us(150);         
+    data[0] = MUSHADD;
+    data[1] = SW;
+    //data[2] = 8;
+    //WritePayload(3, data); 
+    WritePayload(2, data); 
+    __delay_ms(5);  
+    FlushTXRX();
+    WriteRegister(NRF_CONFIG, 0x00);        // turn off module
+    __delay_ms(5);                
+    // go to sleep
+    SW = 0;    
+    
 /*  TRISBbits.TRISB7 = 0;               // switch B out
     LATBbits.LATB7 = 1;                 // switch B 0
     TRISCbits.TRISC1 = 0;               // switch C out
@@ -164,38 +199,7 @@ void main(void)
             if ((SW == 1) || (SW == 2) || (SW == 3) || (SW == 4))
             {      
                 
-                INTCONbits.IOCIE = 0;       // Disable IOC Interrupts 
-                IOCBFbits.IOCBF5 = 0;       // clear flags
-                INTCONbits.IOCIF = 0;   
-                
-                // indicate 
-                REDLED = 1; // turn ON red LED   
-                __delay_ms(40);
-                REDLED = 0; // turn OFF red LED  
-                __delay_ms(40);
-                REDLED = 1; // turn ON red LED   
-                __delay_ms(40);
-                REDLED = 0; // turn OFF red LED                  
-                // send message
-                CE = 0;
-                SPI_init();
-                nRF_Setup(); 
-                FlushTXRX();
-                WriteRegister(NRF_STATUS,0x70);         // Reset status register
-                __delay_ms(2);
-                CE = 1;
-                __delay_us(150);         
-                data[0] = MUSHADD;
-                data[1] = SW;
-                //data[2] = 8;
-                //WritePayload(3, data); 
-                WritePayload(2, data); 
-                __delay_ms(5);  
-                FlushTXRX();
-                WriteRegister(NRF_CONFIG, 0x00);        // turn off module
-                __delay_ms(5);                
-                // go to sleep
-                SW = 0;
+
                 timer_setup_and_start_IE();
                 //MUSHROOM_ON = 0;
             }
