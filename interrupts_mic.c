@@ -36,46 +36,27 @@ void interrupt isr(void)
     if(INTCONbits.IOCIF)
     {
         INTCONbits.IOCIF = 0;  
-        if (IOCBFbits.IOCBF5 == 1) // switch A
+        if (IOCBFbits.IOCAF0 == 1) // switch A connected to RA0
         {                        
-            IOCBFbits.IOCBF5 = 0; // clear flag                        
-            if (MUSHROOM_ON == 0)
-                {
-                    SW = 5;
-                }
-            else
-                {
-                    SW = 1;
-                }            
+            IOCBFbits.IOCAF0 = 0; // clear flag                        
+            SW = 1;
         }
-        //if (IOCBFbits.IOCBF7 == 1) // switch B
-        //{
-        //    IOCBFbits.IOCBF7 = 0; // clear flag
-        //    if (MUSHROOM_ON == 0)
-        //        {SW = 6;}
-        //    else
-        //        {SW = 2;}
-        //}              
-    }
-    // Timer0
-    //if (INTCONbits.T0IF) 
-    //{
-    //    INTCONbits.T0IF = 0;        // clear flag   
-    //    MUSHROOM_ON = 0;
-    //    SW = 0;
-    //}  
-    //Timer1
-    if (PIR1bits.TMR1IF) 
-    {
-        PIR1bits.TMR1IF = 0;        // clear flag           
-        TMR_CNT = TMR_CNT + 1;
-        if (TMR_CNT > 16)
+        if (IOCBFbits.IOCAF1 == 1) // switch B connected to RA1
         {
-            INTCONbits.IOCIE = 0;       // Disable IOC Interrupts     
-            MUSHROOM_ON = 0;
-            SW = 0;            
-        }      
-    }    
+            IOCBFbits.IOCAF1 = 0; // clear flag
+            SW = 2;
+        }   
+        if (IOCBFbits.IOCBF5 == 1) // switch C connected to RB5
+        {
+            IOCBFbits.IOCBF5 = 0; // clear flag
+            SW = 3;
+        }
+        if (IOCBFbits.IOCBF7 == 1) // switch D connected to RB7
+        {
+            IOCBFbits.IOCBF7 = 0; // clear flag
+            SW = 4;            
+        }          
+    } 
 }
 
   
